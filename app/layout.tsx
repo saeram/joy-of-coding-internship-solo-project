@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
+import { Theme } from '@radix-ui/themes'
 import Sidebar from "./Components/Sidebar/Sidebar";
 
 const nunito = Nunito({
@@ -28,9 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunito.className}`}>
-      <body className="flex items-start justify-between">
-        <Sidebar />
-        <main className="w-full h-full">{children}</main>
+      <body className="flex items-start">
+      <Sidebar />
+        <main>
+          {children}</main>
       </body>
     </html>
   );

@@ -3,8 +3,8 @@ import Tasks from "./Components/tasks/tasks";
 
 export default function Home() {
   return (
-    <main>
+    <div>
       <Tasks />
-    </main>
+      </div>
   );
 }
