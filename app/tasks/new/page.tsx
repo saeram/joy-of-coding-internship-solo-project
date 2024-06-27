@@ -20,8 +20,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  title: z.string().min(1).max(50),
-  description: z.string().min(1),
+  title: z.string().min(1, 'Title is required.').max(50),
+  description: z.string().min(1, 'Description is required.'),
 });
 
 const NewTaskPage = () => {
