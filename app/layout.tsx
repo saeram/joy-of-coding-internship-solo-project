@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Nunito, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import "@radix-ui/themes/styles.css";
-import { Theme } from '@radix-ui/themes'
 import Sidebar from "./Components/Sidebar/Sidebar";
+import { auth } from "@clerk/nextjs/server";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -27,13 +28,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const {userId} = auth()
+  
   return (
+    <ClerkProvider>
     <html lang="en" className={`${nunito.className}`}>
       <body className="flex items-start">
+      
       <Sidebar />
+      <header>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </header>
         <main>
           {children}</main>
       </body>
     </html>
+    </ClerkProvider>
+
   );
 }

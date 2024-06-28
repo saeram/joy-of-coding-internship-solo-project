@@ -11,26 +11,25 @@ import { Button } from "@/components/ui/button"
 import { PlusIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import Link from "next/link"
+import prisma from "@/prisma/client"
+import TaskStatusBadge from "../Components/TaskStatusBadge"
 
-const Tasks = () => {
+const Tasks = async () => {
+  const tasks = await prisma.task.findMany();
   return (
-    <>
-    <Card>
-    <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card Description</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p>Card Content</p>
-    </CardContent>
-    <CardFooter>
-      <p>Card Footer</p>
-    </CardFooter>
-  </Card>
-  
-  
-</>
-  )
+    <div className="flex">
+      {tasks.map((task) => (
+        <Card key={task.id} className="m-5">
+          <CardHeader>
+            <TaskStatusBadge status={task.status}/>
+            <CardTitle className="pt-8">{task.title}</CardTitle>
+          </CardHeader>
+          <CardContent>{task.description}</CardContent>
+          <CardFooter>{task.createdAt.toDateString()}</CardFooter>
+        </Card>
+      ))}
+      </div>
+  );
 }
 
 export default Tasks
