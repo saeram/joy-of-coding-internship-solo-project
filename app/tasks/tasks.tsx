@@ -22,7 +22,11 @@ const Tasks = async () => {
         <Card key={task.id} className="m-5">
           <CardHeader>
             <TaskStatusBadge status={task.status}/>
-            <CardTitle className="pt-8">{task.title}</CardTitle>
+            <CardTitle className="pt-8">
+              <Link href={`/tasks/${task.id}`}>
+              {task.title}
+              </Link>
+              </CardTitle>
           </CardHeader>
           <CardContent>{task.description}</CardContent>
           <CardFooter>{task.createdAt.toDateString()}</CardFooter>
