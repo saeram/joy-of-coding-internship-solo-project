@@ -33,10 +33,11 @@ const TaskDetailPage = async ({ params }: Props) => {
         <Link href={`/tasks/${task.id}/edit`}>
           Edit</Link>
           </Button>
-      <Button>
+          <Button>
         <TrashIcon className="mr-2"/>
         <Link href={`/tasks/${task.id}/delete`}>
         Delete</Link></Button>
+      
 
       </div>
 
