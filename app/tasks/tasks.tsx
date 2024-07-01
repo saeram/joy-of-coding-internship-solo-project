@@ -17,18 +17,18 @@ import TaskStatusBadge from "../Components/TaskStatusBadge"
 const Tasks = async () => {
   const tasks = await prisma.task.findMany();
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {tasks.map((task) => (
-        <Card key={task.id} className="m-5">
+        <Card key={task.id} className="m-5 text-wrap max-w-72 max-h-80">
           <CardHeader>
-            <TaskStatusBadge status={task.status}/>
-            <CardTitle className="pt-8">
+            <TaskStatusBadge status={task.status} />
+            <CardTitle className=" hover:text-blue-600 pt-5">
               <Link href={`/tasks/${task.id}`}>
               {task.title}
               </Link>
               </CardTitle>
           </CardHeader>
-          <CardContent>{task.description}</CardContent>
+          <CardContent className="max-h-44 text-ellipsis overflow-hidden ...">{task.description}</CardContent>
           <CardFooter>{task.createdAt.toDateString()}</CardFooter>
         </Card>
       ))}

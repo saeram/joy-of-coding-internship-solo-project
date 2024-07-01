@@ -9,13 +9,11 @@ import { auth } from "@clerk/nextjs/server";
 const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
-  //variable: '--font-nunito',
 });
 
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
-  //variable: '--font-roboto-mono',
 });
 
 export const metadata: Metadata = {
@@ -33,7 +31,7 @@ export default function RootLayout({
   
   return (
     <ClerkProvider>
-    <html lang="en" className={`${nunito.className}`}>
+    <html lang="en" className={nunito.className}>
       <body className="flex items-start">
       
       <Sidebar />
@@ -45,7 +43,7 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-        <main>
+        <main className={roboto_mono.className}>
           {children}</main>
       </body>
     </html>
