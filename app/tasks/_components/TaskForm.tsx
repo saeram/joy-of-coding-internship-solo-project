@@ -32,7 +32,7 @@ const TaskForm = ({ task }: { task?: Task }) => {
   async function onSubmit(data: FormSchema) {
     if (task) await axios.patch("/api/tasks/" + task.id, data);
     else await axios.post("/api/tasks", data);
-    router.push("/");
+    router.push("/tasks");
   }
 
   return (

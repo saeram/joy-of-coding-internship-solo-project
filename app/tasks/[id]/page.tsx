@@ -2,9 +2,12 @@ import TaskStatusBadge from '@/app/Components/TaskStatusBadge';
 import { Button } from '@/components/ui/button';
 import prisma from '@/prisma/client'
 import { Pencil1Icon, TrashIcon } from '@radix-ui/react-icons';
+import axios from 'axios';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import DeleteIssueButton from './DeleteIssueButton';
 
 interface Props {
     params: { id: string }
@@ -33,10 +36,7 @@ const TaskDetailPage = async ({ params }: Props) => {
         <Link href={`/tasks/${task.id}/edit`}>
           Edit</Link>
           </Button>
-          <Button>
-        <TrashIcon className="mr-2"/>
-        <Link href={`/tasks/${task.id}/delete`}>
-        Delete</Link></Button>
+        <DeleteIssueButton taskId={task.id} />
       
 
       </div>
